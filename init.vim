@@ -62,6 +62,11 @@ function! UserConfig()
   " It is good for airline layer.
   " let g:airline_powerline_fonts = 1
 
+  " disable python, ruby, node health check
+  let g:loaded_python_provider = 0
+  let g:loaded_ruby_provider = 0
+  let g:loaded_node_provider = 0
+
   " clap
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
   nnoremap <silent> <Leader>kb  :Clap blines<CR>

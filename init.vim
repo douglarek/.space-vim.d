@@ -76,15 +76,22 @@ function! UserConfig()
   let g:spacevim#map#leader#desc.k.b = 'blines'
   let g:spacevim#map#leader#desc.k.f = 'files'
   let g:spacevim#map#leader#desc.k.h = 'history'
+
   " go
   let g:go_auto_type_info = 1
+  autocmd FileType go nnoremap <silent> <LocalLeader>a :GoAlternate<CR>
+  autocmd FileType go nnoremap <silent> <LocalLeader>g :GoTests<CR>
+
   " formatting
   au BufWrite *.go :Autoformat
+
   "emoji
   set completefunc=emoji#complete
+
   "which_key hides statusline
   autocmd! FileType which_key
   autocmd  FileType which_key set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
   " vista
   let g:vista_default_executive = 'coc'
 endfunction

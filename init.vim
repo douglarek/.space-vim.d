@@ -45,6 +45,9 @@ function! UserInit()
 
   " Vim plugin for https://github.com/cweill/gotests
   Plug 'buoto/gotests-vim'
+
+  " Vim and Neovim plugin to reveal the commit messages under the cursor, <Leader>gm
+  Plug 'rhysd/git-messenger.vim'
 endfunction
 
 " Override the default settings from space-vim as well as adding extras

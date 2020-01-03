@@ -94,4 +94,8 @@ function! UserConfig()
 
   " vista
   let g:vista_default_executive = 'coc'
+  let g:vista#renderer#enable_icon = 0
+
+  " rainbow
+  let g:rainbow_active = 0
 endfunction

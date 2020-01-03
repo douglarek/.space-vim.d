@@ -33,7 +33,10 @@ let g:spacevim_enable_true_color = 1
 "   Layer 'airline'
 " endif
 
-let g:spacevim_enable_clap = 1
+" disable clap since it can not grep multiple chars
+let g:spacevim_enable_clap = 0
+
+" lsp use coc.vim
 let g:spacevim_lsp_engine = 'coc'
 
 " Manage your own plugins.
@@ -68,14 +71,19 @@ function! UserConfig()
   let g:loaded_node_provider = 0
 
   " clap
+  " let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
+  " nnoremap <silent> <Leader>kb  :Clap blines<CR>
+  " nnoremap <silent> <Leader>kf  :Clap files<CR>
+  " nnoremap <silent> <Leader>kh  :Clap history<CR>
+  " let g:spacevim#map#leader#desc.k = get(g:spacevim#map#leader#desc, 'k', {'name' : '+clap'})
+  " let g:spacevim#map#leader#desc.k.b = 'blines'
+  " let g:spacevim#map#leader#desc.k.f = 'files'
+  " let g:spacevim#map#leader#desc.k.h = 'history'
+
+  " fzf
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
-  nnoremap <silent> <Leader>kb  :Clap blines<CR>
-  nnoremap <silent> <Leader>kf  :Clap files<CR>
-  nnoremap <silent> <Leader>kh  :Clap history<CR>
-  let g:spacevim#map#leader#desc.k = get(g:spacevim#map#leader#desc, 'k', {'name' : '+clap'})
-  let g:spacevim#map#leader#desc.k.b = 'blines'
-  let g:spacevim#map#leader#desc.k.f = 'files'
-  let g:spacevim#map#leader#desc.k.h = 'history'
+  nnoremap <silent> <Leader>ph  :History<CR>
+  let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 
   " go
   let g:go_auto_type_info = 1

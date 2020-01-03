@@ -1,5 +1,5 @@
 {
-  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.enable": false,
   "languageserver": {
     "golang": {
       "command": "gopls",

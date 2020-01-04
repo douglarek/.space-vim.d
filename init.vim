@@ -85,6 +85,19 @@ function! UserConfig()
   nnoremap <silent> <Leader>ph  :History<CR>
   let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 
+  " coc extensions; use <C-w>o to close floating window
+  let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator' ]
+  let g:coc_user_config = {
+        \'diagnostic.messageTarget': 'echo',
+        \'languageserver': {
+          \'golang': {
+            \'command': 'gopls',
+            \'rootPatterns': [ 'go.mod', '.vim/', '.git/', '.hg/' ],
+            \'filetypes': [ 'go' ],
+          \},
+        \},
+  \}
+
   " go
   let g:go_auto_type_info = 1
   autocmd FileType go nnoremap <silent> <LocalLeader>a :GoAlternate<CR>

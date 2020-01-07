@@ -20,6 +20,7 @@ let g:spacevim_layers = [
       \'better-motion',
       \'text-align',
       \'programming',
+      \'markdown',
       \'go']
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
@@ -42,10 +43,6 @@ let g:spacevim_lsp_engine = 'coc'
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
 function! UserInit()
-
-  " Add your own plugin via Plug command.
-  Plug 'junegunn/seoul256.vim'
-
   " Vim plugin for https://github.com/cweill/gotests
   Plug 'buoto/gotests-vim'
 

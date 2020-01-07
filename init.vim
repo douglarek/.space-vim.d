@@ -110,10 +110,6 @@ function! UserConfig()
   "emoji
   set completefunc=emoji#complete
 
-  "which_key hides statusline
-  autocmd! FileType which_key
-  autocmd  FileType which_key set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
   " vista
   let g:vista_default_executive = 'coc'
   let g:vista#renderer#enable_icon = 0

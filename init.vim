@@ -11,7 +11,9 @@ let g:spacevim_plug_home = '~/.vim/plugged'
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
-      \'fzf', 'better-defaults', 'which-key',
+      \'fzf',
+      \'better-defaults',
+      \'which-key',
       \'git', 'github',
       \'lsp',
       \'formatting', 'code-snippets', 'editing',
@@ -48,6 +50,9 @@ function! UserInit()
 
   " Vim and Neovim plugin to reveal the commit messages under the cursor, <Leader>gm
   Plug 'rhysd/git-messenger.vim'
+
+  " 👏 Modern performant generic finder and dispatcher for Vim and NeoVim
+  Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -68,14 +73,20 @@ function! UserConfig()
   let g:loaded_node_provider = 0
 
   " clap
-  " let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
-  " nnoremap <silent> <Leader>kb  :Clap blines<CR>
-  " nnoremap <silent> <Leader>kf  :Clap files<CR>
-  " nnoremap <silent> <Leader>kh  :Clap history<CR>
-  " let g:spacevim#map#leader#desc.k = get(g:spacevim#map#leader#desc, 'k', {'name' : '+clap'})
-  " let g:spacevim#map#leader#desc.k.b = 'blines'
-  " let g:spacevim#map#leader#desc.k.f = 'files'
-  " let g:spacevim#map#leader#desc.k.h = 'history'
+  let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
+  nnoremap <silent> <Leader>kb  :Clap blines<CR>
+  nnoremap <silent> <Leader>kf  :Clap files<CR>
+  nnoremap <silent> <Leader>kh  :Clap history<CR>
+  nnoremap <silent> <Leader>kr  :Clap grep<CR>
+  nnoremap <silent> <Leader>kc  :Clap commits<CR>
+  nnoremap <silent> <Leader>kt  :Clap tags<CR>
+  let g:spacevim#map#leader#desc.k = get(g:spacevim#map#leader#desc, 'k', {'name' : '+clap'})
+  let g:spacevim#map#leader#desc.k.b = 'blines'
+  let g:spacevim#map#leader#desc.k.f = 'files'
+  let g:spacevim#map#leader#desc.k.h = 'history'
+  let g:spacevim#map#leader#desc.k.r = 'grep'
+  let g:spacevim#map#leader#desc.k.c = 'commits'
+  let g:spacevim#map#leader#desc.k.t = 'tags'
 
   " fzf
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc

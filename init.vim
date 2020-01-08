@@ -83,9 +83,8 @@ function! UserConfig()
   let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 
   " coc extensions; use <C-w>o to close floating window
-  let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace' ]
+  let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace', 'coc-java' ]
   let g:coc_user_config = {
-        \'diagnostic.messageTarget': 'echo',
         \'languageserver': {
           \'golang': {
             \'command': 'gopls',
@@ -93,8 +92,13 @@ function! UserConfig()
             \'filetypes': [ 'go' ],
           \},
         \},
+        \'java.format.comments.enabled': 'true',
+        \'java.format.settings.url': 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml',
+        \'java.completion.overwrite': 'true',
+        \'coc.preferences.formatOnSaveFiletypes': [ 'go', 'java' ],
   \}
   nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
+  autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>
 
   " go
   let g:go_auto_type_info = 1
@@ -102,7 +106,7 @@ function! UserConfig()
   autocmd FileType go nnoremap <silent> <LocalLeader>g :GoTests<CR>
 
   " formatting
-  au BufWrite *.go :Autoformat
+  " au BufWrite *.go :Autoformat
 
   "emoji
   set completefunc=emoji#complete

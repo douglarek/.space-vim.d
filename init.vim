@@ -118,6 +118,7 @@ function! UserConfig()
   \}
   nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
   autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>
+  command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
   " go
   let g:go_auto_type_info = 1

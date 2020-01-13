@@ -52,7 +52,7 @@ function! UserInit()
   Plug 'rhysd/git-messenger.vim'
 
   " 👏 Modern performant generic finder and dispatcher for Vim and NeoVim
-  Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
   if has('nvim')
     Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -61,6 +61,8 @@ function! UserInit()
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+
+  Plug 'skywind3000/vim-quickui'
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -185,4 +187,23 @@ function! UserConfig()
          \ 'toggle': 1,
          \ 'resume': 1
          \ })
+
+  " quickui
+  call quickui#menu#reset()
+  let g:quickui_show_tip = 1
+  let g:quickui_color_scheme = 'gruvbox'
+  let g:quickui_border_style = 2
+  noremap <space><space> :call quickui#menu#open()<cr>
+  autocmd FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
+  function! s:quickui_messages()
+      let x = ''
+      redir => x
+      silent! messages
+      redir END
+      let x = substitute(x, '[\n\r]\+\%$', '', 'g')
+      let content = filter(split(x, "\n"), 'v:key != ""')
+      let opts = {"close":"button", "title":"Vim Messages"}
+      call quickui#textbox#open(content, opts)
+  endfunction
+  command QuickuiMessages call s:quickui_messages()
 endfunction

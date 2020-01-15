@@ -104,7 +104,7 @@ function! UserConfig()
   let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 
   " coc extensions; use <C-w>o to close floating window
-  let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace', 'coc-java' ]
+  let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace', 'coc-java' , 'coc-python' ]
   let g:coc_user_config = {
         \'languageserver': {
           \'golang': {
@@ -116,7 +116,11 @@ function! UserConfig()
         \'java.format.comments.enabled': 'true',
         \'java.format.settings.url': 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml',
         \'java.completion.overwrite': 'true',
-        \'coc.preferences.formatOnSaveFiletypes': [ 'go', 'java' ],
+        \'coc.preferences.formatOnSaveFiletypes': [ 'go', 'java', 'python' ],
+        \'python.pythonPath': 'python3',
+        \'python.jediEnabled': 'false',
+        \'python.linting.pylintEnabled': 'false',
+        \'python.linting.flake8Enabled': 'true',
   \}
   nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
   autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>

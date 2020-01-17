@@ -128,6 +128,7 @@ function! UserConfig()
 
   " go
   let g:go_auto_type_info = 1
+  let g:go_rename_command = 'gopls'
   autocmd FileType go nnoremap <silent> <LocalLeader>a :GoAlternate<CR>
   autocmd FileType go nnoremap <silent> <LocalLeader>g :GoTests<CR>
 

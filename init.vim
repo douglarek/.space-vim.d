@@ -14,13 +14,12 @@ let g:spacevim_layers = [
       \'fzf',
       \'better-defaults',
       \'which-key',
-      \'git', 'github',
+      \'git',
       \'lsp',
-      \'formatting', 'code-snippets', 'editing',
+      \'code-snippets',
+      \'editing',
       \'chinese',
       \'emoji',
-      \'better-motion',
-      \'text-align',
       \'programming',
       \'markdown',
       \'go']
@@ -36,9 +35,6 @@ let g:spacevim_enable_true_color = 1
 "   Layer 'airline'
 " endif
 
-" disable clap since it can not grep multiple chars
-let g:spacevim_enable_clap = 0
-
 " lsp use coc.vim
 let g:spacevim_lsp_engine = 'coc'
 
@@ -48,13 +44,14 @@ function! UserInit()
   " Vim plugin for https://github.com/cweill/gotests
   Plug 'buoto/gotests-vim'
 
-  " Vim and Neovim plugin to reveal the commit messages under the cursor, <Leader>gm
-  Plug 'rhysd/git-messenger.vim'
-
   " 👏 Modern performant generic finder and dispatcher for Vim and NeoVim
   Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
-  Plug 'skywind3000/vim-quickui'
+
+  " Vim plugin for C/C++/ObjC semantic highlighting using cquery or ccls
+  if executable('ccls')
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+  endif
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -70,9 +67,11 @@ function! UserConfig()
   " let g:airline_powerline_fonts = 1
 
   " disable python, ruby, node health check
-  let g:loaded_python_provider = 0
-  let g:loaded_ruby_provider = 0
-  let g:loaded_node_provider = 0
+  if has('nvim')
+    let g:loaded_python_provider = 0
+    let g:loaded_ruby_provider = 0
+    let g:loaded_node_provider = 0
+  endif
 
   " clap
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
@@ -104,15 +103,26 @@ function! UserConfig()
             \'rootPatterns': [ 'go.mod', '.vim/', '.git/', '.hg/' ],
             \'filetypes': [ 'go' ],
           \},
+          \"ccls": {
+            \'command': 'ccls',
+            \'filetypes': ['c', 'cpp', 'cuda', 'objc', 'objcpp'],
+            \'rootPatterns': ['.ccls-root', 'compile_commands.json'],
+            \'initializationOptions': {
+              \'cache': {
+              \'directory': '.ccls-cache'
+              \},
+              \'highlight': { 'lsRanges' : v:true },
+            \}
+          \},
         \},
-        \'java.format.comments.enabled': 'true',
+        \'java.format.comments.enabled': v:true,
         \'java.format.settings.url': 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml',
-        \'java.completion.overwrite': 'true',
-        \'coc.preferences.formatOnSaveFiletypes': [ 'go', 'java', 'python' ],
+        \'java.completion.overwrite': v:true,
+        \'coc.preferences.formatOnSaveFiletypes': [ 'go', 'java', 'python', 'c', 'c++' ],
         \'python.pythonPath': 'python3',
-        \'python.jediEnabled': 'false',
-        \'python.linting.pylintEnabled': 'false',
-        \'python.linting.flake8Enabled': 'true',
+        \'python.jediEnabled': v:false,
+        \'python.linting.pylintEnabled': v:false,
+        \'python.linting.flake8Enabled': v:true,
   \}
   nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
   autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>
@@ -126,9 +136,6 @@ function! UserConfig()
   autocmd FileType go nnoremap <silent> <LocalLeader>a :GoAlternate<CR>
   autocmd FileType go nnoremap <silent> <LocalLeader>g :GoTests<CR>:GoAlternate<CR>
 
-  " formatting
-  " au BufWrite *.go :Autoformat
-
   "emoji
   set completefunc=emoji#complete
 
@@ -139,22 +146,6 @@ function! UserConfig()
   " rainbow
   let g:rainbow_active = 0
 
-  " quickui
-  call quickui#menu#reset()
-  let g:quickui_show_tip = 1
-  let g:quickui_color_scheme = 'gruvbox'
-  let g:quickui_border_style = 2
-  noremap <space><space> :call quickui#menu#open()<cr>
-  autocmd FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
-  function! s:quickui_messages()
-      let x = ''
-      redir => x
-      silent! messages
-      redir END
-      let x = substitute(x, '[\n\r]\+\%$', '', 'g')
-      let content = filter(split(x, "\n"), 'v:key != ""')
-      let opts = {"close":"button", "title":"Vim Messages"}
-      call quickui#textbox#open(content, opts)
-  endfunction
-  command QuickuiMessages call s:quickui_messages()
+  " use AsyncRun to make vim-fugitive asynchronous
+  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 endfunction

@@ -47,10 +47,17 @@ function! UserInit()
   " 👏 Modern performant generic finder and dispatcher for Vim and NeoVim
   Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
-
   " Vim plugin for C/C++/ObjC semantic highlighting using cquery or ccls
   if executable('ccls')
     Plug 'jackguo380/vim-lsp-cxx-highlight'
+  endif
+
+  if has('nvim')
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/defx.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
 endfunction
 
@@ -95,40 +102,7 @@ function! UserConfig()
   let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 
   " coc extensions; use <C-w>o to close floating window
-  let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace', 'coc-java' , 'coc-python' ]
-  let g:coc_user_config = {
-        \'languageserver': {
-          \'golang': {
-            \'command': 'gopls',
-            \'rootPatterns': [ 'go.mod', '.vim/', '.git/', '.hg/' ],
-            \'filetypes': [ 'go' ],
-          \},
-          \"ccls": {
-            \'command': 'ccls',
-            \'filetypes': ['c', 'cpp', 'cuda', 'objc', 'objcpp'],
-            \'rootPatterns': ['.ccls-root', 'compile_commands.json'],
-            \'initializationOptions': {
-              \'cache': {
-              \'directory': '.ccls-cache'
-              \},
-              \'highlight': { 'lsRanges' : v:true },
-            \}
-          \},
-        \},
-        \'java.format.comments.enabled': v:true,
-        \'java.format.settings.url': 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml',
-        \'java.completion.overwrite': v:true,
-        \'coc.preferences.formatOnSaveFiletypes': [ 'go', 'java', 'python', 'c', 'c++' ],
-        \'python.pythonPath': 'python3',
-        \'python.jediEnabled': v:false,
-        \'python.linting.pylintEnabled': v:false,
-        \'python.linting.flake8Enabled': v:true,
-  \}
-  nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
-  autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>
-  command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-  nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
-  nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
+  source ~/.space-vim.d/coc.vim
 
   " go
   let g:go_auto_type_info = 1
@@ -148,4 +122,7 @@ function! UserConfig()
 
   " use AsyncRun to make vim-fugitive asynchronous
   command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+  " defx
+  source ~/.space-vim.d/defx.vim
 endfunction

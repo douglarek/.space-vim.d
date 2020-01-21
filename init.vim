@@ -59,6 +59,9 @@ function! UserInit()
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+
+  " The undo history visualizer for VIM
+  Plug 'mbbill/undotree'
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -125,4 +128,9 @@ function! UserConfig()
 
   " defx
   source ~/.space-vim.d/defx.vim
+
+  " undotree
+  let g:undotree_ShortIndicators = 1
+  let g:undotree_SetFocusWhenToggle = 1
+
 endfunction

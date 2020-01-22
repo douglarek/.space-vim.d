@@ -41,9 +41,6 @@ let g:spacevim_lsp_engine = 'coc'
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
 function! UserInit()
-  " Vim plugin for https://github.com/cweill/gotests
-  Plug 'buoto/gotests-vim'
-
   " 👏 Modern performant generic finder and dispatcher for Vim and NeoVim
   Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 

@@ -21,7 +21,8 @@ let g:spacevim_layers = [
       \'chinese',
       \'emoji',
       \'programming',
-      \'markdown']
+      \'markdown',
+      \'go']
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
 let g:spacevim_enable_true_color = 1

@@ -34,5 +34,7 @@ nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
 
 " go
+let g:go_gopls_enabled = 0
+let g:go_rename_command = 'gopls'
 autocmd FileType go nnoremap <silent> <LocalLeader>a :CocCommand go.test.toggle<CR>
 autocmd FileType go nnoremap <silent> <LocalLeader>g :CocCommand go.test.generate.file<CR>

@@ -1,11 +1,6 @@
-let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace', 'coc-java' , 'coc-python' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-translator', 'coc-marketplace', 'coc-java' , 'coc-python', 'coc-go' ]
 let g:coc_user_config = {
       \'languageserver': {
-        \'golang': {
-          \'command': 'gopls',
-          \'rootPatterns': [ 'go.mod', '.vim/', '.git/', '.hg/' ],
-          \'filetypes': [ 'go' ],
-        \},
         \"ccls": {
           \'command': 'ccls',
           \'filetypes': ['c', 'cpp', 'cuda', 'objc', 'objcpp'],
@@ -26,9 +21,18 @@ let g:coc_user_config = {
       \'python.jediEnabled': v:false,
       \'python.linting.pylintEnabled': v:false,
       \'python.linting.flake8Enabled': v:true,
+      \'go.enable': v:true,
+      \'go.goplsOptions': {
+        \'completeUnimported': v:true,
+      \},
 \}
+
 nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
 autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
+
+" go
+autocmd FileType go nnoremap <silent> <LocalLeader>a :CocCommand go.test.toggle<CR>
+autocmd FileType go nnoremap <silent> <LocalLeader>g :CocCommand go.test.generate.file<CR>

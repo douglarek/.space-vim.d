@@ -21,8 +21,7 @@ let g:spacevim_layers = [
       \'chinese',
       \'emoji',
       \'programming',
-      \'markdown',
-      \'go']
+      \'markdown']
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
 let g:spacevim_enable_true_color = 1
@@ -111,12 +110,6 @@ function! UserConfig()
 
   " coc extensions; use <C-w>o to close floating window
   source ~/.space-vim.d/coc.vim
-
-  " go
-  let g:go_auto_type_info = 1
-  let g:go_rename_command = 'gopls'
-  autocmd FileType go nnoremap <silent> <LocalLeader>a :GoAlternate<CR>
-  autocmd FileType go nnoremap <silent> <LocalLeader>g :GoTests<CR>:GoAlternate<CR>
 
   "emoji
   set completefunc=emoji#complete

@@ -31,8 +31,6 @@ let g:coc_user_config = {
 nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
 " enable coc do hover for specific file types
 autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocAction('doHover')<CR>
-" use :OR for manual import cleanups
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 " skip coc-diagnostic by ,N ,P
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)

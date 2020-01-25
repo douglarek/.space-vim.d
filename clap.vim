@@ -1,6 +1,9 @@
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 let g:spacevim#map#leader#desc.k = get(g:spacevim#map#leader#desc, 'k', {'name' : '+clap'})
 
+nnoremap <silent> <Leader>kB  :Clap buffers<CR>
+let g:spacevim#map#leader#desc.k.B = 'buffers'
+
 nnoremap <silent> <Leader>kb  :Clap blines<CR>
 let g:spacevim#map#leader#desc.k.b = 'blines'
 

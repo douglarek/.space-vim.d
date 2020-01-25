@@ -86,20 +86,7 @@ function! UserConfig()
   endif
 
   " clap
-  let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
-  nnoremap <silent> <Leader>kb  :Clap blines<CR>
-  nnoremap <silent> <Leader>kf  :Clap files<CR>
-  nnoremap <silent> <Leader>kh  :Clap history<CR>
-  nnoremap <silent> <Leader>kr  :Clap grep<CR>
-  nnoremap <silent> <Leader>kc  :Clap commits<CR>
-  nnoremap <silent> <Leader>kt  :Clap tags<CR>
-  let g:spacevim#map#leader#desc.k = get(g:spacevim#map#leader#desc, 'k', {'name' : '+clap'})
-  let g:spacevim#map#leader#desc.k.b = 'blines'
-  let g:spacevim#map#leader#desc.k.f = 'files'
-  let g:spacevim#map#leader#desc.k.h = 'history'
-  let g:spacevim#map#leader#desc.k.r = 'grep'
-  let g:spacevim#map#leader#desc.k.c = 'commits'
-  let g:spacevim#map#leader#desc.k.t = 'tags'
+  source ~/.space-vim.d/clap.vim
 
   " fzf
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc

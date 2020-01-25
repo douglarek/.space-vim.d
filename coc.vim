@@ -27,14 +27,21 @@ let g:coc_user_config = {
       \},
 \}
 
+" coc-translator
 nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
-autocmd FileType java nnoremap <silent> <LocalLeader>h :CocAction('doHover')<CR>
+" enable coc do hover for specific file types
+autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocAction('doHover')<CR>
+" use :OR for manual import cleanups
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+" skip coc-diagnostic by ,N ,P
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
+" coc import cleanups by ,O
+autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocAction('runCommand', 'editor.action.organizeImport')
 
-" go
+" coc go settings
+let g:go_template_use_pkg = 1
 let g:go_gopls_enabled = 0
 let g:go_rename_command = 'gopls'
-autocmd FileType go nnoremap <silent> <LocalLeader>a :CocCommand go.test.toggle<CR>
-autocmd FileType go nnoremap <silent> <LocalLeader>g :CocCommand go.test.generate.file<CR>
+autocmd FileType go nnoremap <silent> <LocalLeader>A :CocCommand go.test.toggle<CR>
+autocmd FileType go nnoremap <silent> <LocalLeader>G :CocCommand go.test.generate.file<CR>

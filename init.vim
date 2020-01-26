@@ -25,7 +25,15 @@ let g:spacevim_layers = [
       \'go']
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
-let g:spacevim_enable_true_color = 1
+let colorterm=$COLORTERM
+if colorterm == 'truecolor' || colorterm == '24bit'
+  let g:spacevim_enable_true_color = 1
+  " also set escape characters for true colors, if needed
+  if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  endif
+endif
 
 " Uncomment the following if you have some nerd font installed.
 " let g:spacevim_nerd_fonts = 1

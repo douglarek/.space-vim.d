@@ -43,3 +43,4 @@ let g:go_gopls_enabled = 0
 let g:go_rename_command = 'gopls'
 autocmd FileType go nnoremap <silent> <LocalLeader>A :CocCommand go.test.toggle<CR>
 autocmd FileType go nnoremap <silent> <LocalLeader>G :CocCommand go.test.generate.file<CR>
+autocmd FileType go nnoremap <silent> <LocalLeader>F :GoFillStruct<CR>

@@ -116,6 +116,10 @@ function! UserConfig()
 
   " use AsyncRun to make vim-fugitive asynchronous
   command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+  " close quickfix window if asyncrun stopped, if need more info, use :copen
+  augroup asyncrun
+    autocmd User AsyncRunStop call asyncrun#quickfix_toggle(8, 0)
+  augroup END
 
   " defx
   source ~/.space-vim.d/defx.vim

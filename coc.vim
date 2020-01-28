@@ -27,15 +27,19 @@ let g:coc_user_config = {
       \},
 \}
 
+if g:spacevim.nvim
+  let g:coc_user_config["diagnostic.virtualText"] = v:true
+endif
+
 " coc-translator
 nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
 " enable coc do hover for specific file types
-autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocAction('doHover')<CR>
+autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocActionAsync('doHover')<CR>
 " skip coc-diagnostic by ,N ,P
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
 " coc import cleanups by ,O
-autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " coc go settings
 let g:go_template_use_pkg = 1

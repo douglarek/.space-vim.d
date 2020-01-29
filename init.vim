@@ -67,11 +67,6 @@ function! UserInit()
 
   " The undo history visualizer for VIM
   Plug 'mbbill/undotree'
-
-  " An incremental narrowing engine for neovim inspired by emacs helm/ivy
-  if has('nvim')
-    Plug 'conweller/findr.vim'
-  endif
 endfunction
 
 " Override the default settings from space-vim as well as adding extras

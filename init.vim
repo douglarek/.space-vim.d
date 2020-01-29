@@ -11,6 +11,7 @@ let g:spacevim_plug_home = '~/.vim/plugged'
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
+      \'airline',
       \'fzf',
       \'better-defaults',
       \'which-key',
@@ -88,8 +89,14 @@ function! UserConfig()
     let g:loaded_node_provider = 0
   endif
 
+  " ~/.space-vim.d
+  let s:dir = fnamemodify(resolve(expand('~/.spacevim')), ':h')
+  function! s:LoadScript(f) abort
+    execute 'source ' . s:dir . '/' . a:f
+  endfunction
+
   " clap
-  source ~/.space-vim.d/clap.vim
+  call s:LoadScript('clap.vim')
 
   " fzf
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
@@ -97,7 +104,7 @@ function! UserConfig()
   let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 
   " coc extensions; use <C-w>o to close floating window
-  source ~/.space-vim.d/coc.vim
+  call s:LoadScript('coc.vim')
 
   "emoji
   set completefunc=emoji#complete
@@ -117,10 +124,18 @@ function! UserConfig()
   augroup END
 
   " defx
-  source ~/.space-vim.d/defx.vim
+  call s:LoadScript('defx.vim')
 
   " undotree
   let g:undotree_ShortIndicators = 1
   let g:undotree_SetFocusWhenToggle = 1
 
+  " airline
+  set noshowmode
+
+  " netrw
+  call s:LoadScript('netrw.vim')
+
+  " git
+  call s:LoadScript('git.vim')
 endfunction

@@ -39,7 +39,7 @@ autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocAction
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
 " coc import cleanups by ,O
-autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 
 " coc go settings
 let g:go_template_use_pkg = 1

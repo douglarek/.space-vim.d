@@ -2,12 +2,6 @@
 " same plugin download directory.
 let g:spacevim_plug_home = '~/.vim/plugged'
 
-" Uncomment the following line to override the leader key. The default value is space key "<\Space>".
-" let g:spacevim_leader = "<\Space>"
-
-" Uncomment the following line to override the local leader key. The default value is comma ','.
-" let g:spacevim_localleader = ','
-
 " Enable the existing layers in space-vim.
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
@@ -25,8 +19,8 @@ let g:spacevim_layers = [
       \'go']
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
-let colorterm=$COLORTERM
-if colorterm == 'truecolor' || colorterm == '24bit'
+let s:colorterm=$COLORTERM
+if s:colorterm == 'truecolor' || s:colorterm == '24bit'
   let g:spacevim_enable_true_color = 1
   " also set escape characters for true colors, if needed
   if &term =~# '^screen'
@@ -35,16 +29,12 @@ if colorterm == 'truecolor' || colorterm == '24bit'
   endif
 endif
 
-" Uncomment the following if you have some nerd font installed.
-" let g:spacevim_nerd_fonts = 1
-
-" If you want to have more control over the layer, try using Layer command.
-" if g:spacevim.gui
-"   Layer 'airline'
-" endif
-
 " lsp use coc.vim
 let g:spacevim_lsp_engine = 'coc'
+
+" command LoadScript simplify script loading
+let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+command! -nargs=1 LoadScript exec 'so '.s:home.'/'.'<args>'
 
 " Manage your own plugins.
 " Refer to https://github.com/junegunn/vim-plug for more detials.
@@ -57,76 +47,24 @@ function! UserInit()
     Plug 'jackguo380/vim-lsp-cxx-highlight'
   endif
 
-  if has('nvim')
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/defx.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
-
   " 📕 Asynchronous translating plugin for Vim/Neovim
   Plug 'voldikss/vim-translator'
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
 function! UserConfig()
-
-  " Override the default settings.
-  " Uncomment the following line to disable relative number.
-  " set norelativenumber
-
-  " Adding extras.
-  " Uncomment the following line If you have installed the powerline fonts.
-  " It is good for airline layer.
-  " let g:airline_powerline_fonts = 1
-
-  " disable python, ruby, node health check
-  if has('nvim')
-    let g:loaded_python_provider = 0
-    let g:loaded_ruby_provider = 0
-    let g:loaded_node_provider = 0
-  endif
-
-  " ~/.space-vim.d
-  let s:dir = fnamemodify(resolve(expand('~/.spacevim')), ':h')
-  function! s:LoadScript(f) abort
-    execute 'source ' . s:dir . '/' . a:f
-  endfunction
+  " multiple plugins base settings
+  LoadScript config/base.vim
 
   " clap
-  call s:LoadScript('clap.vim')
+  LoadScript config/clap.vim
 
   " coc extensions; use <C-w>o to close floating window
-  call s:LoadScript('coc.vim')
-
-  "emoji
-  set completefunc=emoji#complete
-
-  " vista
-  let g:vista_default_executive = 'coc'
-  let g:vista#renderer#enable_icon = 0
-
-  " rainbow
-  let g:rainbow_active = 0
-
-  " use AsyncRun to make vim-fugitive asynchronous
-  command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-  " close quickfix window if asyncrun stopped, if need more info, use :copen
-  augroup asyncrun
-    autocmd User AsyncRunStop call asyncrun#quickfix_toggle(8, 0)
-  augroup END
-
-  " airline
-  set noshowmode
-  let g:airline#extensions#tabline#enabled = 0 " disable tabline at the top
+  LoadScript config/coc.vim
 
   " netrw
-  call s:LoadScript('netrw.vim')
+  LoadScript config/netrw.vim
 
   " git
-  call s:LoadScript('git.vim')
-
-  " vim-translator
-  nnoremap <silent> <LocalLeader>T :Translate<CR>
+  LoadScript config/git.vim
 endfunction

@@ -29,8 +29,26 @@ let g:go_template_use_pkg = 1
 let g:go_gopls_enabled = 0
 let g:go_rename_command = 'gopls'
 let g:go_fmt_fail_silently = 1
-autocmd FileType go nnoremap <silent> <LocalLeader>A :CocCommand go.test.toggle<CR>
-autocmd FileType go nnoremap <silent> <LocalLeader>G :CocCommand go.test.generate.file<CR>
+autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>
+function! s:GoGenerateFuncTest() abort
+  if !executable('gotests')
+    echo 'gotests binary not found.'
+    return
+  endif
+
+  let l:func = search('func\s*\(([^)]\+)\)\=\s*\zs\w\+\ze(', 'bcnW')
+
+  if l:func == 0
+    echo 'no func found immediate to cursor'
+    return
+  endif
+
+  let l:line = getline(l:func)
+  let l:name = split(split(l:line, " ")[1], "(")[0]
+  echo system('gotests -w -only ' . shellescape(l:name) . ' ' . shellescape(expand('%')))
+endfunction
+autocmd FileType go command! GoGenerateFuncTest call s:GoGenerateFuncTest()
+autocmd FileType go nnoremap <silent> <LocalLeader>G :GoGenerateFuncTest<CR>:GoAlternate<CR>
 autocmd FileType go nnoremap <silent> <LocalLeader>F :GoFillStruct<CR>
 
 " coc ccls settings

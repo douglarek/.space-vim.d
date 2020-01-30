@@ -33,3 +33,5 @@ nnoremap <silent> <Leader>pq  :Clap quickfix<CR>
 let g:spacevim#map#leader#desc.p.q = 'entries of the quickfix list'
 nnoremap <silent> <Leader>pd  :Clap command<CR>
 let g:spacevim#map#leader#desc.p.d = 'command'
+nnoremap <silent> <Leader>pH  :Clap help_tags<CR>
+let g:spacevim#map#leader#desc.p.H = 'list the help tags'

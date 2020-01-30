@@ -25,6 +25,7 @@ augroup END
 " airline
 set noshowmode
 let g:airline#extensions#tabline#enabled = 0 " disable tabline at the top
+let g:airline_highlighting_cache = 1
 
 " vim-translator
 nnoremap <silent> <LocalLeader>T :Translate<CR>

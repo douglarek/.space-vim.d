@@ -1,3 +1,6 @@
+" space-vim-dark use grey comment
+hi Comment guifg=#5C6370 ctermfg=59
+
 " disable python, ruby, node health check
 if has('nvim')
   let g:loaded_python_provider = 0

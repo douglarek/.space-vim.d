@@ -64,6 +64,9 @@ function! UserInit()
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+
+  " 📕 Asynchronous translating plugin for Vim/Neovim
+  Plug 'voldikss/vim-translator'
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -123,4 +126,7 @@ function! UserConfig()
 
   " git
   call s:LoadScript('git.vim')
+
+  " vim-translator
+  nnoremap <silent> <LocalLeader>T :Translate<CR>
 endfunction

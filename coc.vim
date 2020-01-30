@@ -45,6 +45,7 @@ autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocAction
 let g:go_template_use_pkg = 1
 let g:go_gopls_enabled = 0
 let g:go_rename_command = 'gopls'
+let g:go_fmt_fail_silently = 1
 autocmd FileType go nnoremap <silent> <LocalLeader>A :CocCommand go.test.toggle<CR>
 autocmd FileType go nnoremap <silent> <LocalLeader>G :CocCommand go.test.generate.file<CR>
 autocmd FileType go nnoremap <silent> <LocalLeader>F :GoFillStruct<CR>

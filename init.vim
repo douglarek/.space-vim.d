@@ -12,7 +12,6 @@ let g:spacevim_plug_home = '~/.vim/plugged'
 " Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
 let g:spacevim_layers = [
       \'airline',
-      \'fzf',
       \'better-defaults',
       \'which-key',
       \'git',
@@ -65,9 +64,6 @@ function! UserInit()
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
-
-  " The undo history visualizer for VIM
-  Plug 'mbbill/undotree'
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -98,11 +94,6 @@ function! UserConfig()
   " clap
   call s:LoadScript('clap.vim')
 
-  " fzf
-  let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
-  nnoremap <silent> <Leader>ph  :History<CR>
-  let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
-
   " coc extensions; use <C-w>o to close floating window
   call s:LoadScript('coc.vim')
 
@@ -123,15 +114,9 @@ function! UserConfig()
     autocmd User AsyncRunStop call asyncrun#quickfix_toggle(8, 0)
   augroup END
 
-  " defx
-  call s:LoadScript('defx.vim')
-
-  " undotree
-  let g:undotree_ShortIndicators = 1
-  let g:undotree_SetFocusWhenToggle = 1
-
   " airline
   set noshowmode
+  let g:airline#extensions#tabline#enabled = 0 " disable tabline at the top
 
   " netrw
   call s:LoadScript('netrw.vim')

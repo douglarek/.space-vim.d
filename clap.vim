@@ -1,6 +1,9 @@
 " override fzf keys and add news
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
+" a workaround since clap no fzf :Maps support
+let g:spacevim#map#leader#desc['?'] = [ 'nmap', 'show-keybindings' ]
+
 nnoremap <silent> <Leader>pb  :Clap buffers<CR>
 let g:spacevim#map#leader#desc.p.b = 'open buffers'
 nnoremap <silent> <Leader>pB  :Clap blines<CR>

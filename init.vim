@@ -1,9 +1,7 @@
-" Comment the following line if you don't want Vim and NeoVim to share the
-" same plugin download directory.
+" 设置 vim 和 neovim 公用插件目录, 不设置则使用各自目录
 let g:spacevim_plug_home = '~/.vim/plugged'
 
-" Enable the existing layers in space-vim.
-" Refer to https://github.com/liuchengxu/space-vim/blob/master/layers/LAYERS.md for all available layers.
+" 选择要使用的 space-vim 内建插件
 let g:spacevim_layers = [
       \'airline',
       \'better-defaults',
@@ -18,53 +16,34 @@ let g:spacevim_layers = [
       \'markdown',
       \'go']
 
-" Uncomment the following line if your terminal(-emulator) supports true colors.
+" 终端真彩色判断
 let s:colorterm=$COLORTERM
 if s:colorterm == 'truecolor' || s:colorterm == '24bit'
   let g:spacevim_enable_true_color = 1
-  " also set escape characters for true colors, if needed
   if &term =~# '^screen'
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   endif
 endif
 
-" lsp use coc.vim
+" lsp 适用 coc.vim 引擎
 let g:spacevim_lsp_engine = 'coc'
 
-" command LoadScript simplify script loading
+" 自定义 s:LoadScript 函数方便自定义配置加载
 let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-command! -nargs=1 LoadScript exec 'so '.s:home.'/'.'<args>'
+func! s:LoadScript(p, f)
+  exec 'so ' . s:home . '/' . a:p . '/' . a:f . '.vim'
+endfunc
 
-" Manage your own plugins.
-" Refer to https://github.com/junegunn/vim-plug for more detials.
+" space-vim 用户自定义插件列表
 function! UserInit()
-  " 👏 Modern performant generic finder and dispatcher for Vim and NeoVim
-  Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-
-  " Vim plugin for C/C++/ObjC semantic highlighting using cquery or ccls
-  if executable('ccls')
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
-  endif
-
-  " 📕 Asynchronous translating plugin for Vim/Neovim
-  Plug 'voldikss/vim-translator'
+  call s:LoadScript('', 'plugin')
 endfunction
 
-" Override the default settings from space-vim as well as adding extras
+" space-vim 用户自定义配置
 function! UserConfig()
-  " multiple plugins base settings
-  LoadScript config/base.vim
-
-  " clap
-  LoadScript config/clap.vim
-
-  " coc extensions; use <C-w>o to close floating window
-  LoadScript config/coc.vim
-
-  " netrw
-  LoadScript config/netrw.vim
-
-  " git
-  LoadScript config/git.vim
+  let l:config = ['base', 'clap', 'coc', 'netrw', 'git']
+  for c in l:config
+    call s:LoadScript('config', c)
+  endfor
 endfunction

@@ -1,4 +1,3 @@
-
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 let g:spacevim#map#leader#desc.N = get(g:spacevim#map#leader#desc, 'N', {'name' : '+netrw'})
 

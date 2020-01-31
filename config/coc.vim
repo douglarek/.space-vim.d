@@ -7,29 +7,31 @@ if g:spacevim.nvim
   let g:coc_user_config['diagnostic.virtualText'] = v:true
 endif
 
-" enable coc do hover for specific file types
+" 开启 coc doHover 功能
 autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocActionAsync('doHover')<CR>
-" skip coc-diagnostic by ,N ,P
+" 使用,N ,P 跳过 coc-diagnostic
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
-" coc import cleanups by ,O
+" 手动清理 imports
 autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 
-" coc go settings
+" coc go 设置
 let g:coc_user_config['languageserver']['golang'] = {
-        \'command': 'gopls',
-        \'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
-        \'filetypes': ['go'],
-        \'initializationOptions': {
-          \'completeUnimported': v:true,
-        \},
-\}
+      \'command': 'gopls',
+      \'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
+      \'filetypes': ['go'],
+      \'initializationOptions': {
+      \'completeUnimported': v:true,
+      \},
+      \}
 
 let g:go_template_use_pkg = 1
 let g:go_gopls_enabled = 0
 let g:go_rename_command = 'gopls'
 let g:go_fmt_fail_silently = 1
+" go 和 test 文件之间切换
 autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>
+" 使用 gotests 产生 go test 文件
 function! s:GoGenerateFuncTest() abort
   if !executable('gotests')
     echo 'gotests binary not found.'
@@ -49,29 +51,30 @@ function! s:GoGenerateFuncTest() abort
 endfunction
 autocmd FileType go command! GoGenerateFuncTest call s:GoGenerateFuncTest()
 autocmd FileType go nnoremap <silent> <LocalLeader>G :GoGenerateFuncTest<CR>:GoAlternate<CR>
+" 赋值 struct 默认值
 autocmd FileType go nnoremap <silent> <LocalLeader>F :GoFillStruct<CR>
 
-" coc ccls settings
+" coc c/c++ 设置
 let g:coc_user_config['languageserver']['ccls'] = {
-          \'command': 'ccls',
-          \'filetypes': ['c', 'cpp', 'cuda', 'objc', 'objcpp'],
-          \'rootPatterns': ['.ccls-root', 'compile_commands.json'],
-          \'initializationOptions': {
-            \'cache': {
-            \'directory': '.ccls-cache'
-            \},
-            \'highlight': { 'lsRanges' : v:true },
-          \},
-\}
+      \'command': 'ccls',
+      \'filetypes': ['c', 'cpp', 'cuda', 'objc', 'objcpp'],
+      \'rootPatterns': ['.ccls-root', 'compile_commands.json'],
+      \'initializationOptions': {
+      \'cache': {
+      \'directory': '.ccls-cache'
+      \},
+      \'highlight': { 'lsRanges' : v:true },
+      \},
+      \}
 
-" coc python settings
+" coc python 设置
 let g:coc_user_config['python.pythonPath'] = 'python3'
 let g:coc_user_config['python.jediEnabled'] = v:false
 let g:coc_user_config['python.linting.pylintEnabled'] = v:false
 let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 
-" coc java settings
+" coc java 设置
 let g:coc_user_config['java.format.comments.enabled'] = v:true
 let g:coc_user_config['java.format.settings.url'] = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml'
 let g:coc_user_config['java.completion.overwrite'] = v:true

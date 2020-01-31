@@ -1,7 +1,7 @@
-" override fzf keys and add news
+" 使用 clap 键映射替代 fzf
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
-" a workaround since clap no fzf :Maps support
+" 替代 fzf :Maps 的临时方案
 let g:spacevim#map#leader#desc['?'] = [ 'nmap', 'show-keybindings' ]
 
 nnoremap <silent> <Leader>pb  :Clap buffers<CR>

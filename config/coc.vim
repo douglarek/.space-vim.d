@@ -29,6 +29,8 @@ let g:go_template_use_pkg = 1
 let g:go_gopls_enabled = 0
 let g:go_rename_command = 'gopls'
 let g:go_fmt_fail_silently = 1
+let g:go_def_mapping_enabled = 0
+
 " go 和 test 文件之间切换
 autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>
 " 使用 gotests 产生 go test 文件

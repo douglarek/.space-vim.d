@@ -35,3 +35,5 @@ nnoremap <silent> <Leader>pd  :Clap command<CR>
 let g:spacevim#map#leader#desc.p.d = 'command'
 nnoremap <silent> <Leader>pH  :Clap help_tags<CR>
 let g:spacevim#map#leader#desc.p.H = 'list the help tags'
+nnoremap <silent> <Leader>pi  :Clap filer<CR>
+let g:spacevim#map#leader#desc.p.i = 'ivy-like file explorer'

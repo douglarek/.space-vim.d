@@ -34,24 +34,30 @@ let g:go_def_mapping_enabled = 0
 " go 和 test 文件之间切换
 autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>
 " 使用 gotests 产生 go test 文件
-function! s:GoGenerateFuncTest() abort
+function! s:GoGenerateFuncTest(args) abort
   if !executable('gotests')
     echo 'gotests binary not found.'
     return
   endif
 
-  let l:func = search('func\s*\(([^)]\+)\)\=\s*\zs\w\+\ze(', 'bcnW')
+  if has_key(a:args, 'only') && a:args.only
+    let l:func = search('func\s*\(([^)]\+)\)\=\s*\zs\w\+\ze(', 'bcnW')
 
-  if l:func == 0
-    echo 'no func found immediate to cursor'
-    return
+    if l:func == 0
+      echo 'no func found immediate to cursor'
+      return
+    endif
+
+    let l:line = getline(l:func)
+    let l:name = split(split(l:line, " ")[1], "(")[0]
+    echo system('gotests -w -only ' . shellescape(l:name) . ' ' . shellescape(expand('%')))
+  else
+    let l:output = system('gotests -w -all ' . shellescape(expand('%')))
+    echo trim(l:output) . '.' . ' To jump to test, :GoAlternate'
   endif
-
-  let l:line = getline(l:func)
-  let l:name = split(split(l:line, " ")[1], "(")[0]
-  echo system('gotests -w -only ' . shellescape(l:name) . ' ' . shellescape(expand('%')))
 endfunction
-autocmd FileType go command! GoGenerateFuncTest call s:GoGenerateFuncTest()
+autocmd FileType go command! GoGenerateAllTest call s:GoGenerateFuncTest({})
+autocmd FileType go command! GoGenerateFuncTest call s:GoGenerateFuncTest({'only': v:true})
 autocmd FileType go nnoremap <silent> <LocalLeader>G :GoGenerateFuncTest<CR>:GoAlternate<CR>
 " 赋值 struct 默认值
 autocmd FileType go nnoremap <silent> <LocalLeader>F :GoFillStruct<CR>

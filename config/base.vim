@@ -33,3 +33,9 @@ let g:airline_highlighting_cache = 1
 
 " 映射 vim 翻译插件
 nnoremap <silent> <LocalLeader>T :Translate<CR>
+
+" 映射 terminal 快捷键
+if has('terminal')
+  let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
+  let g:spacevim#map#leader#desc['T'] = [ 'terminal', 'terminal' ]
+endif

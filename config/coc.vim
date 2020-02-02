@@ -33,8 +33,20 @@ let g:go_def_mapping_enabled = 0
 
 " go 和 test 文件之间切换
 autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>
+" s:GoGenerateTests 的异步回调
+func! GoTestsHandler(channel, msg) abort
+  " if a:msg !~? '^Generated*'
+    " call setqflist([], 'r', {'title': 'gotests command outpout', 'items': [{'text': a:msg}], 'nr': '$'})
+    " copen
+  " endif
+  if a:msg !~? '^Generated'
+    echo a:msg
+  else
+    echo trim(a:msg, '\n') . '. To jump to test, :GoAlternate'
+  endif
+endfunc
 " 使用 gotests 产生 go test 文件
-function! s:GoGenerateFuncTest(args) abort
+function! s:GoGenerateTests(args) abort
   if !executable('gotests')
     echo 'gotests binary not found.'
     return
@@ -52,12 +64,12 @@ function! s:GoGenerateFuncTest(args) abort
     let l:name = split(split(l:line, " ")[1], "(")[0]
     echo system('gotests -w -only ' . shellescape(l:name) . ' ' . shellescape(expand('%')))
   else
-    let l:output = system('gotests -w -all ' . shellescape(expand('%')))
-    echo trim(l:output) . '.' . ' To jump to test, :GoAlternate'
+    " 如果是生成全部使用异步
+    call job_start('gotests -w -all ' . expand('%'), {'callback': 'GoTestsHandler'})
   endif
 endfunction
-autocmd FileType go command! GoGenerateAllTest call s:GoGenerateFuncTest({})
-autocmd FileType go command! GoGenerateFuncTest call s:GoGenerateFuncTest({'only': v:true})
+autocmd FileType go command! GoGenerateAllTest call s:GoGenerateTests({})
+autocmd FileType go command! GoGenerateFuncTest call s:GoGenerateTests({'only': v:true})
 autocmd FileType go nnoremap <silent> <LocalLeader>G :GoGenerateFuncTest<CR>:GoAlternate<CR>
 " 赋值 struct 默认值
 autocmd FileType go nnoremap <silent> <LocalLeader>F :GoFillStruct<CR>

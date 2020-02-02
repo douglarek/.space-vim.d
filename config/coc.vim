@@ -36,8 +36,8 @@ autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>
 " s:GoGenerateTests 的异步回调
 func! GoTestsHandler(channel, msg) abort
   " if a:msg !~? '^Generated*'
-    " call setqflist([], 'r', {'title': 'gotests command outpout', 'items': [{'text': a:msg}], 'nr': '$'})
-    " copen
+  " call setqflist([], 'r', {'title': 'gotests command outpout', 'items': [{'text': a:msg}], 'nr': '$'})
+  " copen
   " endif
   if a:msg !~? '^Generated'
     echo a:msg
@@ -65,7 +65,12 @@ function! s:GoGenerateTests(args) abort
     echo system('gotests -w -only ' . shellescape(l:name) . ' ' . shellescape(expand('%')))
   else
     " 如果是生成全部使用异步
-    call job_start('gotests -w -all ' . expand('%'), {'callback': 'GoTestsHandler'})
+    if has('channel') && has('job')
+      call job_start('gotests -w -all ' . expand('%'), {'callback': 'GoTestsHandler'})
+    else
+      let l:output = system('gotests -w -all ' . shellescape(expand('%')))
+      echo trim(l:output) . '.' . ' To jump to test, :GoAlternate'
+    endif
   endif
 endfunction
 autocmd FileType go command! GoGenerateAllTest call s:GoGenerateTests({})

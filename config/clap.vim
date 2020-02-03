@@ -2,7 +2,7 @@
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
 " 替代 fzf :Maps 的临时方案
-let g:spacevim#map#leader#desc['?'] = [ 'nmap', 'show-keybindings' ]
+let g:spacevim#map#leader#desc['?'] = [ ':Clap maps', 'show-keybindings' ]
 
 nnoremap <silent> <Leader>pb  :Clap buffers<CR>
 let g:spacevim#map#leader#desc.p.b = 'open buffers'

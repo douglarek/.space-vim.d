@@ -11,10 +11,6 @@ endif
 "emoji 补全
 set completefunc=emoji#complete
 
-" vista 类 tagbar 插件
-let g:vista_default_executive = 'coc'
-let g:vista#renderer#enable_icon = 0
-
 " 关闭彩虹显示
 let g:rainbow_active = 0
 
@@ -30,9 +26,6 @@ augroup END
 set noshowmode
 let g:airline#extensions#tabline#enabled = 0 " disable tabline at the top
 let g:airline_highlighting_cache = 1
-
-" 映射 vim 翻译插件
-nnoremap <silent> <LocalLeader>T :Translate<CR>
 
 " 映射 terminal 快捷键
 if has('terminal')

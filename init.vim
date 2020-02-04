@@ -3,6 +3,7 @@ let g:spacevim_plug_home = '~/.vim/plugged'
 
 " 选择要使用的 space-vim 内建插件
 let g:spacevim_layers = [
+      \'fzf',
       \'airline',
       \'better-defaults',
       \'which-key',
@@ -42,7 +43,7 @@ endfunction
 
 " space-vim 用户自定义配置
 function! UserConfig()
-  let l:config = ['base', 'clap', 'coc', 'netrw', 'git']
+  let l:config = ['base', 'fzf', 'coc', 'netrw', 'git']
   for c in l:config
     call s:LoadScript('config', c)
   endfor

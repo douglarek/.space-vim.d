@@ -1,4 +1,4 @@
-let g:coc_global_extensions = [ 'coc-json', 'coc-ultisnips', 'coc-snippets', 'coc-java' , 'coc-python' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-translator', 'coc-ultisnips', 'coc-snippets', 'coc-java' , 'coc-python' ]
 let g:coc_user_config = {}
 let g:coc_user_config['languageserver'] = {}
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'c++' ]
@@ -103,3 +103,6 @@ let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 let g:coc_user_config['java.format.comments.enabled'] = v:true
 let g:coc_user_config['java.format.settings.url'] = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml'
 let g:coc_user_config['java.completion.overwrite'] = v:true
+
+" coc translator
+nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>

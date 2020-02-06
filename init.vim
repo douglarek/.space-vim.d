@@ -30,21 +30,14 @@ endif
 " lsp 适用 coc.vim 引擎
 let g:spacevim_lsp_engine = 'coc'
 
-" 自定义 s:LoadScript 函数方便自定义配置加载
-let s:home = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-func! s:LoadScript(p, f)
-  exec 'so ' . s:home . '/' . a:p . '/' . a:f . '.vim'
-endfunc
-
 " space-vim 用户自定义插件列表
 function! UserInit()
-  call s:LoadScript('', 'plugin')
+  if executable('ccls')
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+  endif
 endfunction
 
 " space-vim 用户自定义配置
 function! UserConfig()
-  let l:config = ['base', 'fzf', 'coc', 'netrw', 'git']
-  for c in l:config
-    call s:LoadScript('config', c)
-  endfor
+  set runtimepath^=~/.space-vim.d
 endfunction

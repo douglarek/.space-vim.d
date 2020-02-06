@@ -2,7 +2,7 @@
 hi Comment guifg=#5C6370 ctermfg=59
 
 " 禁用 nvim 的部分模块健康检查
-if has('nvim')
+if g:spacevim.nvim
   let g:loaded_python_provider = 0
   let g:loaded_ruby_provider = 0
   let g:loaded_node_provider = 0
@@ -32,3 +32,8 @@ if has('terminal')
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
   let g:spacevim#map#leader#desc['T'] = [ 'terminal', 'terminal' ]
 endif
+
+" vista
+let g:vista#renderer#enable_icon = 0
+let g:vista_fzf_preview = ['right:50%']
+

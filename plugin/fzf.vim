@@ -1,4 +1,8 @@
+" 重新设置 fzf 因为默认会重新使 airline 设置回 showmode
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
+" 设置 fzf 支持 vim popup
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " fzf 补充映射
@@ -24,4 +28,5 @@ let g:spacevim#map#leader#desc.p.d = 'command'
 nnoremap <silent> <Leader>pH  :Helptags<CR>
 let g:spacevim#map#leader#desc.p.H = 'list the help tags'
 nnoremap <silent> <Leader>pT  :Filetypes<CR>
-let g:spacevim#map#leader#desc.p.T = 'File types'
+nnoremap <silent> <Leader>pF  :GFiles<CR>
+let g:spacevim#map#leader#desc.p.F = 'find-file-in-git-project'

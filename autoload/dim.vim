@@ -43,7 +43,8 @@ endfunc
 
 " 如果是合适的文件类型则使用 vista, 否则其他的使用 fzf Btags
 func! dim#Tags() abort
-  if &filetype == 'go'
+  let l:ft = ['go', 'java']
+  if index(l:ft, &filetype) != -1
     Vista finder coc
   else
     BTags

@@ -7,13 +7,15 @@ if g:spacevim.nvim
   let g:coc_user_config['diagnostic.virtualText'] = v:true
 endif
 
-" 开启 coc doHover 功能
-autocmd FileType java,go,python nnoremap <silent> <LocalLeader>H :call CocActionAsync('doHover')<CR>
+" 映射 coc doHover
+nnoremap <silent> <LocalLeader>H :call CocActionAsync('doHover')<CR>
 " 使用,N ,P 跳过 coc-diagnostic
 nmap <silent> <LocalLeader>P <Plug>(coc-diagnostic-prev)
 nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
-" 手动清理 imports
-autocmd FileType java,go,python nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
+" 映射 coc imports
+nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
+" 映射 coc rename
+nnoremap <silent> <LocalLeader>R :call CocActionAsync('rename')<CR>
 
 " coc go 设置
 let g:coc_user_config['languageserver']['golang'] = {
@@ -61,7 +63,9 @@ let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 
 " coc java 设置
+autocmd Filetype java setlocal tabstop=2 shiftwidth=2 expandtab
 let g:coc_user_config['java.format.comments.enabled'] = v:true
+let g:coc_user_config['java.saveActions.organizeImports'] = v:true
 let g:coc_user_config['java.format.settings.url'] = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml'
 let g:coc_user_config['java.completion.overwrite'] = v:true
 

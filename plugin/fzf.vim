@@ -2,12 +2,22 @@
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
+" 使用 bat 渲染 Files 和 GFiles 文件预览
+if executable('bat')
+  command! -bang -nargs=? -complete=dir Files
+        \ call fzf#vim#files(<q-args>, {'options': ['--preview', 'bat --theme TwoDark -p --color always {}']}, <bang>0)
+  command! -bang -nargs=? -complete=dir GFiles
+        \ call fzf#vim#gitfiles(<q-args>, {'options': ['--preview', 'bat --theme TwoDark -p --color always {}']}, <bang>0)
+endif
+
 " 设置 fzf 支持 vim popup
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " fzf 补充映射
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
+nnoremap <silent> <Leader>pf  :Files<CR>
+let g:spacevim#map#leader#desc.p.f = 'find-file-in-project'
 nnoremap <silent> <Leader>ph  :History<CR>
 let g:spacevim#map#leader#desc.p.h = 'v:oldfiles and open buffers'
 nnoremap <silent> <Leader>pb  :Buffers<CR>

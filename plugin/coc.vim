@@ -2,10 +2,7 @@ let g:coc_global_extensions = [ 'coc-json', 'coc-translator', 'coc-ultisnips', '
 let g:coc_user_config = {}
 let g:coc_user_config['languageserver'] = {}
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'c++' ]
-
-if g:spacevim.nvim
-  let g:coc_user_config['diagnostic.virtualText'] = v:true
-endif
+let g:coc_user_config['suggest.floatEnable'] = v:false
 
 " 映射 coc doHover
 nnoremap <silent> <LocalLeader>H :call CocActionAsync('doHover')<CR>
@@ -63,7 +60,6 @@ let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 
 " coc java 设置
-autocmd Filetype java setlocal tabstop=2 shiftwidth=2 expandtab
 let g:coc_user_config['java.format.comments.enabled'] = v:true
 let g:coc_user_config['java.saveActions.organizeImports'] = v:true
 let g:coc_user_config['java.format.settings.url'] = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml'

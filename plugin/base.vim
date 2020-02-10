@@ -28,7 +28,7 @@ let g:airline#extensions#tabline#enabled = 0 " disable tabline at the top
 let g:airline_highlighting_cache = 1
 
 " 映射 terminal 快捷键
-if has('terminal')
+if has('terminal') || g:spacevim.nvim
   let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
   let g:spacevim#map#leader#desc['T'] = [ 'terminal', 'terminal' ]
 endif

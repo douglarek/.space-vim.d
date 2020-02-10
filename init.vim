@@ -15,6 +15,7 @@ let g:spacevim_layers = [
       \'emoji',
       \'programming',
       \'markdown',
+      \'better-motion',
       \'go']
 
 " 终端真彩色判断

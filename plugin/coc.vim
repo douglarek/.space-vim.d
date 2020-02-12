@@ -13,6 +13,11 @@ nmap <silent> <LocalLeader>N <Plug>(coc-diagnostic-next)
 nnoremap <silent> <LocalLeader>O :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 " 映射 coc rename
 nnoremap <silent> <LocalLeader>R :call CocActionAsync('rename')<CR>
+" 映射 coc codeAction
+xmap <LocalLeader>a  <Plug>(coc-codeaction-selected)
+nmap <LocalLeader>a  <Plug>(coc-codeaction-selected)
+" 映射coc quickfix
+nmap <LocalLeader>Q  <Plug>(coc-fix-current)
 
 " coc go 设置
 let g:coc_user_config['languageserver']['golang'] = {

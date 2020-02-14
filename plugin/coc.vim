@@ -72,3 +72,4 @@ let g:coc_user_config['java.completion.overwrite'] = v:true
 
 " coc translator
 nnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>
+xnoremap <silent> <LocalLeader>T :CocCommand translator.popup<CR>

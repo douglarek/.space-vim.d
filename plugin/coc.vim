@@ -1,7 +1,7 @@
 let g:coc_global_extensions = [ 'coc-json', 'coc-translator', 'coc-ultisnips', 'coc-snippets', 'coc-java' , 'coc-python' ]
 let g:coc_user_config = {}
 let g:coc_user_config['languageserver'] = {}
-let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'c++' ]
+let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'cpp' ]
 let g:coc_user_config['suggest.floatEnable'] = v:false
 
 " 映射 coc doHover
@@ -18,6 +18,11 @@ xmap <LocalLeader>a  <Plug>(coc-codeaction-selected)
 nmap <LocalLeader>a  <Plug>(coc-codeaction-selected)
 " 映射coc quickfix
 nmap <LocalLeader>Q  <Plug>(coc-fix-current)
+" gotos 映射
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " coc go 设置
 let g:coc_user_config['languageserver']['golang'] = {

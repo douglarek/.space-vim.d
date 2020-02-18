@@ -16,6 +16,10 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 " fzf 补充映射
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
+" 导出查找隐藏文件命令
+command! -bang -nargs=? -complete=dir HFiles
+      \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)
+
 nnoremap <silent> <Leader>pf  :Files<CR>
 let g:spacevim#map#leader#desc.p.f = 'find-file-in-project'
 nnoremap <silent> <Leader>ph  :History<CR>

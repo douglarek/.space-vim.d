@@ -18,6 +18,9 @@ let g:spacevim_layers = [
       \'better-motion',
       \'go']
 
+" 排除一些用不到的插件
+let g:spacevim_excluded = ['justinmk/vim-sneak', 'luochen1990/rainbow', 'junegunn/rainbow_parentheses.vim']
+
 " 终端真彩色判断
 let s:colorterm=$COLORTERM
 if s:colorterm == 'truecolor' || s:colorterm == '24bit'
@@ -34,7 +37,7 @@ let g:spacevim_lsp_engine = 'coc'
 " space-vim 用户自定义插件列表
 function! UserInit()
   if executable('ccls')
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
+    Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
   endif
 endfunction
 

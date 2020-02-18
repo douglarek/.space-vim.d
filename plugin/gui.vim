@@ -1,3 +1,4 @@
+set visualbell t_vb=
 if has("gui_running")
   if has('gui_macvim')
     set guifont=Courier:h13 " 设置代码字体
@@ -13,7 +14,7 @@ if has("gui_running")
     set guioptions+=c " 使用控制台对话框
     set guioptions+=k " 保持窗口大小
 
-    set visualbell
+    au GUIEnter * set t_vb=
     " 如下配置需要你在终端程序里面设置保证你最大化 macvim 时可以填满屏幕😀
     " defaults write org.vim.MacVim MMTextInsetTop 0
     " defaults write org.vim.MacVim MMTextInsetBottom 0

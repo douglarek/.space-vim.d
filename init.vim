@@ -19,7 +19,7 @@ let g:spacevim_layers = [
       \'go']
 
 " 排除一些用不到的插件
-let g:spacevim_excluded = ['justinmk/vim-sneak', 'luochen1990/rainbow', 'junegunn/rainbow_parentheses.vim']
+let g:spacevim_excluded = ['neoclide/coc.nvim']
 
 " 终端真彩色判断
 let s:colorterm=$COLORTERM
@@ -39,6 +39,7 @@ function! UserInit()
   if executable('ccls')
     Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
   endif
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endfunction
 
 " space-vim 用户自定义配置

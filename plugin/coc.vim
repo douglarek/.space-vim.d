@@ -73,6 +73,7 @@ let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 let g:coc_user_config['java.format.comments.enabled'] = v:true
 let g:coc_user_config['java.saveActions.organizeImports'] = v:true
 let g:coc_user_config['java.format.settings.url'] = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml'
+let g:coc_user_config['java.format.settings.profile'] = 'GoogleStyle'
 let g:coc_user_config['java.completion.overwrite'] = v:true
 
 " coc translator

@@ -11,7 +11,6 @@ let g:spacevim_layers = [
       \'lsp',
       \'code-snippets',
       \'editing',
-      \'chinese',
       \'emoji',
       \'programming',
       \'markdown',
@@ -19,7 +18,7 @@ let g:spacevim_layers = [
       \'go']
 
 " 排除一些用不到的插件
-let g:spacevim_excluded = ['neoclide/coc.nvim']
+let g:spacevim_excluded = []
 
 " 终端真彩色判断
 let s:colorterm=$COLORTERM
@@ -39,7 +38,11 @@ function! UserInit()
   if executable('ccls')
     Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
   endif
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  if has('mac')
+    Plug 'yianwillis/macvimcdoc'
+  else
+    Plug 'yianwillis/vimcdoc'
+  endif
 endfunction
 
 " space-vim 用户自定义配置

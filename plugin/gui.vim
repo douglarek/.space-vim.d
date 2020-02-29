@@ -1,5 +1,11 @@
 set visualbell t_vb=
 if has("gui_running")
+  " 菜单栏中文
+  let $LANG = 'zh_CN.UTF-8'
+  set langmenu=zh_CN
+  source $VIMRUNTIME/delmenu.vim
+  source $VIMRUNTIME/menu.vim
+
   if has('gui_macvim')
     set guifont=Courier:h13 " 设置代码字体
     set guifontwide=Monaco:h11 " 设置中文显示的字体

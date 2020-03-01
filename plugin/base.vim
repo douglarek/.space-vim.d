@@ -16,10 +16,6 @@ let g:rainbow_active = 0
 
 " 使用 AysncRun 让 vim-fugitive 某些操作异步
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-" 执行完毕 asyncrun 之后自动关闭 quickfix, 如果想查看可以使用 :copen
-augroup asyncrun
-  autocmd User AsyncRunStop call asyncrun#quickfix_toggle(8, 0)
-augroup END
 
 " airline 状态栏
 " 关闭模式消息显示, 因为 airline 已经使用颜色和文字区分

@@ -43,6 +43,7 @@ function! UserInit()
   else
     Plug 'yianwillis/vimcdoc'
   endif
+  Plug 'skywind3000/asynctasks.vim', { 'on': [ 'AsyncTask', 'AsyncTaskEdit', 'AsyncTaskList' ] }
 endfunction
 
 " space-vim 用户自定义配置

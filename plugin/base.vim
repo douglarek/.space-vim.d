@@ -31,3 +31,6 @@ endif
 
 " vista
 let g:vista#renderer#enable_icon = 0
+
+" asynctasks
+let g:asynctasks_term_pos = 'bottom'

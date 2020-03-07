@@ -34,3 +34,6 @@ let g:vista#renderer#enable_icon = 0
 
 " asynctasks
 let g:asynctasks_term_pos = 'bottom'
+
+" 重新映射 ultisnips 键为 tab, 这样 C-e 就可以了
+let g:UltiSnipsExpandTrigger = "<tab>"

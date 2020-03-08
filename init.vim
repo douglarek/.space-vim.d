@@ -35,15 +35,11 @@ let g:spacevim_lsp_engine = 'coc'
 
 " space-vim 用户自定义插件列表
 function! UserInit()
-  if executable('ccls')
-    Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
-  endif
-  if has('mac')
+ if has('mac')
     Plug 'yianwillis/macvimcdoc'
   else
     Plug 'yianwillis/vimcdoc'
   endif
-  Plug 'skywind3000/asynctasks.vim', { 'on': [ 'AsyncTask', 'AsyncTaskEdit', 'AsyncTaskList' ] }
 endfunction
 
 " space-vim 用户自定义配置

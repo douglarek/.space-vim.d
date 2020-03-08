@@ -58,7 +58,6 @@ let g:coc_user_config['languageserver']['ccls'] = {
       \'cache': {
       \'directory': '.ccls-cache'
       \},
-      \'highlight': { 'lsRanges' : v:true },
       \},
       \}
 
@@ -70,7 +69,7 @@ let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 let g:coc_user_config['python.linting.flake8Enabled'] = v:true
 
 " coc java 设置
-let g:coc_user_config['java.format.comments.enabled'] = v:true
+let g:coc_user_config['java.format.comments.enabled'] = v:false
 let g:coc_user_config['java.saveActions.organizeImports'] = v:true
 let g:coc_user_config['java.format.settings.url'] = 'https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml'
 let g:coc_user_config['java.format.settings.profile'] = 'GoogleStyle'

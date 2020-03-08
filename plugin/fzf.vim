@@ -16,42 +16,6 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 " fzf 补充映射
 let g:spacevim#map#leader#desc = g:spacevim#map#leader#desc
 
-" asynctasks.vim for fzf
-function! s:asynctasks_source(...)
-  let rows = asynctasks#source(&columns * 48 / 100)
-  let source = []
-  for row in rows
-    let name = row[0]
-    let source += [name . '  ' . row[1] . '  : ' . row[2]]
-  endfor
-  return source
-endfunction
-
-function! s:asynctasks_sink(what)
-  let p1 = stridx(a:what, '<')
-  if p1 >= 0
-    let name = strpart(a:what, 0, p1)
-    let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
-    if name != ''
-      exec "AsyncTask ". fnameescape(name)
-    endif
-  endif
-endfunction
-
-function! s:fzf_task()
-  call plug#load('asynctasks.vim')
-  let opts = { 'source': s:asynctasks_source(), 'sink': function('s:asynctasks_sink'),
-        \ 'options': '+m --nth 1 --inline-info --tac' }
-  if exists('g:fzf_layout')
-    for key in keys(g:fzf_layout)
-      let opts[key] = deepcopy(g:fzf_layout[key])
-    endfor
-  endif
-  call fzf#run(opts)
-endfunction
-
-command! -nargs=0 AsyncTaskFzf call s:fzf_task()
-
 " 导出查找隐藏文件命令
 command! -bang -nargs=? -complete=dir HFiles
       \ call fzf#vim#files(<q-args>, {'source': 'ag --hidden --ignore .git -g ""'}, <bang>0)

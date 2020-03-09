@@ -35,5 +35,8 @@ let g:vista#renderer#enable_icon = 0
 " asynctasks
 let g:asynctasks_term_pos = 'bottom'
 
-" 重新映射 ultisnips 键为 tab, 这样 C-e 就可以了
-let g:UltiSnipsExpandTrigger = "<tab>"
+" 禁用 ultisnips 快捷键, 这样 C-e 就可以了
+let g:UltiSnipsExpandTrigger = "<nop>"
+
+" 禁止 nerdcommenter 按缩进注释
+let g:NERDDefaultAlign = 'left'

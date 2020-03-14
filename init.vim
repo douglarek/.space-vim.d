@@ -35,7 +35,7 @@ let g:spacevim_lsp_engine = 'coc'
 
 " space-vim 用户自定义插件列表
 function! UserInit()
- if has('mac')
+  if has('mac')
     Plug 'yianwillis/macvimcdoc'
   else
     Plug 'yianwillis/vimcdoc'

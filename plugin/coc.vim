@@ -40,6 +40,8 @@ let g:go_rename_command = 'gopls'
 let g:go_fmt_fail_silently = 1
 let g:go_def_mapping_enabled = 0
 let g:go_echo_go_info = 0
+let g:go_doc_keywordprg_enabled = 0 " 使用 coc K
+
 
 " go 和 test 文件之间切换
 autocmd FileType go nnoremap <silent> <LocalLeader>A :GoAlternate<CR>

@@ -27,6 +27,7 @@ nmap <silent> gr <Plug>(coc-references)
 " coc go 设置
 let g:coc_user_config['languageserver']['golang'] = {
       \'command': 'gopls',
+      \"args": ['-remote=auto'],
       \'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
       \'filetypes': ['go'],
       \'initializationOptions': {
@@ -35,11 +36,10 @@ let g:coc_user_config['languageserver']['golang'] = {
       \}
 
 let g:go_template_use_pkg = 1
-let g:go_gopls_enabled = 0
+let g:go_gopls_options = ['-remote=auto']
 let g:go_rename_command = 'gopls'
 let g:go_fmt_fail_silently = 1
 let g:go_def_mapping_enabled = 0
-let g:go_echo_go_info = 0
 let g:go_doc_keywordprg_enabled = 0 " 使用 coc K
 
 

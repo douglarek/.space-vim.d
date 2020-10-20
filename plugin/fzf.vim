@@ -45,5 +45,5 @@ nnoremap <silent> <Leader>pT  :Filetypes<CR>
 nnoremap <silent> <Leader>pF  :GFiles<CR>
 let g:spacevim#map#leader#desc.p.F = 'find-file-in-git-project'
 
-nnoremap <silent> <Leader>pj  :AsyncTaskFzf<CR>
-let g:spacevim#map#leader#desc.p.j = 'list asynctasks.vim tasks'
+" nnoremap <silent> <Leader>pj  :AsyncTaskFzf<CR>
+" let g:spacevim#map#leader#desc.p.j = 'list asynctasks.vim tasks'

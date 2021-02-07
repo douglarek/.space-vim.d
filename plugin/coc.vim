@@ -1,7 +1,7 @@
-let g:coc_global_extensions = [ 'coc-json', 'coc-translator', 'coc-ultisnips', 'coc-snippets', 'coc-java' , 'coc-python' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-translator', 'coc-ultisnips', 'coc-snippets', 'coc-java' , 'coc-python', 'coc-rls' ]
 let g:coc_user_config = {}
 let g:coc_user_config['languageserver'] = {}
-let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'cpp' ]
+let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'cpp', 'rust' ]
 let g:coc_user_config['suggest.floatEnable'] = v:false
 
 " 映射 coc doHover

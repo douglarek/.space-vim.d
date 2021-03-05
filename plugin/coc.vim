@@ -3,6 +3,7 @@ let g:coc_user_config = {}
 let g:coc_user_config['languageserver'] = {}
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = [ 'go', 'java', 'python', 'c', 'cpp', 'rust' ]
 let g:coc_user_config['suggest.floatEnable'] = v:false
+let g:coc_user_config['diagnostic.checkCurrentLine'] = v:true
 
 " 映射 coc doHover
 nnoremap <silent> <LocalLeader>H :call CocActionAsync('doHover')<CR>

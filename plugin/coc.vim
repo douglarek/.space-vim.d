@@ -28,7 +28,6 @@ nmap <silent> gr <Plug>(coc-references)
 " coc go 设置
 let g:coc_user_config['languageserver']['golang'] = {
       \'command': 'gopls',
-      \"args": ['-remote=auto'],
       \'rootPatterns': ['go.mod', '.vim/', '.git/', '.hg/'],
       \'filetypes': ['go'],
       \'initializationOptions': {
